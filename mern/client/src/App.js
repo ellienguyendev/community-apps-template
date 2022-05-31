@@ -19,7 +19,7 @@ const App = () => {
       <Hero 
         heading= "Example App"
         subHeading= "Resources in San Diego, CA"
-        bgImgUrl = "https://i.postimg.cc/4ymFMzb1/IMG-0784-1.jpg"
+        bgImgUrl = "https://i.postimg.cc/8PGB5mg7/laptop-mushroom.jpg"
       />
       <div style={{ margin: 50 }}>
         <Routes>
