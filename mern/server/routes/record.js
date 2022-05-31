@@ -20,28 +20,32 @@ recordRoutes.route("/record").get(function (req, res) {
     .find({})
     .toArray(function (err, result) {
       if (err) throw err;
-      res.json(result);
+      let sorted = result.sort(function(a, b) {
+        var nameA = a.name.toUpperCase();
+        var nameB = b.name.toUpperCase();
+        return (nameA < nameB) ? -1 : (nameA > nameB) ? 1 : 0;
+    });
+      res.json(sorted);
     });
 });
 
 // This section will help you get a single record by id
 recordRoutes.route("/record/:id").get(function (req, res) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect
-      .collection("resources")
-      .findOne(myquery, function (err, result) {
-        if (err) throw err;
-        res.json(result);
-      });
+    .collection("resources")
+    .findOne(myquery, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
 });
 
 // This section will help you create a new record.
 recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
 
-  let bool = req.body.law_enforcement_compliant === "Yes" ? true: false
-  let coordinates = {placeholder: 'will change later in the tutorial'}
+  let coordinates = { placeholder: 'will change later in the tutorial' }
   let myobj = {
     name: req.body.name,
     address: req.body.address,
@@ -50,7 +54,6 @@ recordRoutes.route("/record/add").post(function (req, response) {
     category: req.body.category,
     website_url: req.body.website_url,
     image_url: req.body.image_url,
-    law_enforcement_compliant: bool,
     coordinates: coordinates
   };
   db_connect.collection("resources").insertOne(myobj, function (err, res) {
@@ -62,12 +65,18 @@ recordRoutes.route("/record/add").post(function (req, response) {
 // This section will help you update a record by id.
 recordRoutes.route("/update/:id").post(function (req, response) {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id: ObjectId(req.params.id) };
+  let coordinates = { placeholder: 'will change later in the tutorial' }
   let newvalues = {
     $set: {
       name: req.body.name,
-      position: req.body.position,
-      level: req.body.level,
+      address: req.body.address,
+      phone_number: req.body.phone_number,
+      description: req.body.description,
+      category: req.body.category,
+      website_url: req.body.website_url,
+      image_url: req.body.image_url,
+      coordinates: coordinates
     },
   };
   db_connect
@@ -82,7 +91,7 @@ recordRoutes.route("/update/:id").post(function (req, response) {
 // This section will help you delete a record
 recordRoutes.route("/:id").delete((req, response) => {
   let db_connect = dbo.getDb();
-  let myquery = { _id: ObjectId( req.params.id )};
+  let myquery = { _id: ObjectId(req.params.id) };
   db_connect.collection("resources").deleteOne(myquery, function (err, obj) {
     if (err) throw err;
     console.log("1 document deleted");

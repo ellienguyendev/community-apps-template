@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 
 export default function Create() {
@@ -10,8 +10,7 @@ export default function Create() {
     description: "",
     category: "",
     website_url: "",
-    image_url: "",
-    law_enforcement_compliant: null
+    image_url: ""  
   });
   const navigate = useNavigate();
 
@@ -48,8 +47,7 @@ export default function Create() {
       description: "",
       category: "",
       website_url: "",
-      image_url: "",
-      law_enforcement_compliant: false
+      image_url: ""
     });
     navigate("/");
   }
@@ -60,7 +58,7 @@ export default function Create() {
       <h3>Add New Resource</h3>
       <form onSubmit={onSubmit}>
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Name of Resource / Org / Title</label>
           <input
             type="text"
             className="form-control"
@@ -130,35 +128,9 @@ export default function Create() {
           />
         </div>
         <div className="form-group">
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="law_enforcement_compliant"
-              id="notCompliant"
-              value="No"
-              checked={form.law_enforcement_compliant === "No"}
-              onChange={(e) => updateForm({ law_enforcement_compliant: e.target.value })}
-            />
-            <label htmlFor="positionIntern" className="form-check-label">No</label>
-          </div>
-          <div className="form-check form-check-inline">
-            <input
-              className="form-check-input"
-              type="radio"
-              name="law_enforcement_compliant"
-              id="compliant"
-              value="Yes"
-              checked={form.law_enforcement_compliant === "Yes"}
-              onChange={(e) => updateForm({ law_enforcement_compliant: e.target.value })}
-            />
-            <label htmlFor="positionJunior" className="form-check-label">Yes</label>
-          </div>
-        </div>
-        <div className="form-group">
           <input
             type="submit"
-            value="Create person"
+            value="Add Resource"
             className="btn btn-primary"
           />
         </div>

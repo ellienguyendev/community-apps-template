@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import Button from "./button";
 
 let autoComplete;
 
@@ -50,15 +51,22 @@ function SearchInput() {
   }, []);
 
   return (
-    <div className="search-location-input">
+    <div className="search-location-input form-group">
+      <label htmlFor="searchInput">Enter a City or Zip Code to Find Resources Near You</label>
       <input
         ref={autoCompleteRef}
         onChange={event => setQuery(event.target.value)}
-        placeholder="Enter a City or Zip Code"
+        placeholder='City or Zip Code'
         value={query}
         name='searchInput'
+        class='form control'
+      />
+      <Button
+          text='Search'
       />
     </div>
+
+    
   );
 }
 
