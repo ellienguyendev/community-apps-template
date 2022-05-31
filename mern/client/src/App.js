@@ -9,7 +9,7 @@ import Footer from "./components/footer";
 import Hero from "./components/hero";
 import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
-import SearchForm from "./components/searchForm";
+import Map from "./components/map";
 
 
 const App = () => {
@@ -23,7 +23,7 @@ const App = () => {
       />
       <div style={{ margin: 50 }}>
         <Routes>
-        <Route path="/" element={<SearchForm />} />
+        <Route path="/" element={<Map />} />
           <Route path="/create" element={<Create />} />
           <Route path="/viewAll" element={<RecordList />} />
           <Route path="/edit/:id" element={<Edit />} />
@@ -31,9 +31,6 @@ const App = () => {
       </div>
 
       <Footer />
-      
-
-
     </div>
   );
 };
