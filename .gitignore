@@ -3,3 +3,5 @@ config.env
 .env.development
 .env.production
 map.js
+event.js
+SearchInput.js

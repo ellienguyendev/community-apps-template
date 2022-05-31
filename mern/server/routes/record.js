@@ -41,7 +41,7 @@ recordRoutes.route("/record/add").post(function (req, response) {
   let db_connect = dbo.getDb();
 
   let bool = req.body.law_enforcement_compliant === "Yes" ? true: false
-  let coordinates = {hi: 2}
+  let coordinates = {placeholder: 'will change later in the tutorial'}
   let myobj = {
     name: req.body.name,
     address: req.body.address,

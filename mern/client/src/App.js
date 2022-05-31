@@ -5,28 +5,15 @@ import Geocode from "react-geocode";
 
 // We import all the components we need in our app
 import Button from './components/button'
+import Create from "./components/create";
+import Edit from "./components/edit";
+
 import Navbar from "./components/navbar";
 import RecordList from "./components/recordList";
-import Edit from "./components/edit";
-import Create from "./components/create";
-import SearchInput from './components/SearchInput';
 
-Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+
 
 const App = () => {
-  const searchForm = useRef(null);
-
-  const handleSearchSubmit = e => {
-    e.preventDefault();
-    let userLocation = searchForm.current.searchInput.value;
-
-    Geocode.fromAddress(userLocation).then(
-      (res) => {
-        const { lat, lng } = res.results[0].geometry.location;
-        console.log(lat, lng)
-      })
-  }
-
   return (
     <div>
       <Navbar />
@@ -37,15 +24,6 @@ const App = () => {
           <Route path="/create" element={<Create />} />
         </Routes>
       </div>
-      <form ref={searchForm}>
-        <SearchInput
-          onChange={() => null}
-        />
-        <Button
-          handleClick={handleSearchSubmit}
-          text='Search'
-        />
-      </form>
     </div>
   );
 };
