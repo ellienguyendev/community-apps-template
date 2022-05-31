@@ -8,8 +8,9 @@ import Edit from "./components/edit";
 import Footer from "./components/footer";
 import Hero from "./components/hero";
 import Navbar from "./components/navbar";
-import RecordList from "./components/recordList";
 import Map from "./components/map";
+import RecordList from "./components/recordList";
+
 
 
 const App = () => {

@@ -9,6 +9,9 @@ function Map() {
   return (
     <div className="search-location-input form-group">
       <SearchForm />
+      <Button 
+        text="Search"
+      />
     </div>
   );
 }
